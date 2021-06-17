@@ -1,0 +1,13 @@
+.app-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.new-input {
+  display: flex;
+}
+
+.task-input {
+  margin-right: 16px;
+  width: 250px;
+}
