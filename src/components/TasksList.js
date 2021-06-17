@@ -2,10 +2,10 @@ import React from 'react';
 
 import Task from './Task';
 
-const TasksList = ({ tasks, setTasks }) => {
+const TasksList = ({ tasks, setTasks, filteredTasks }) => {
   return(
     <ul className="tasks-list">
-      {tasks.map((task) => (
+      {filteredTasks.map((task) => (
         <Task 
           task={task}
           key={task.id}

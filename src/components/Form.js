@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Form = ({ inputText, setInputText, tasks, setTasks }) => {
+const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
   // Improvements
   // Block submit for empty input
 
@@ -12,6 +12,9 @@ const Form = ({ inputText, setInputText, tasks, setTasks }) => {
 
     setTasks([...tasks, {text: inputText, completed: false, id: Math.random()}]);
     setInputText("");
+  }
+  const setFilter = (e) => {
+    setFilterState(e.target.value);
   }
 
   return(
@@ -29,7 +32,10 @@ const Form = ({ inputText, setInputText, tasks, setTasks }) => {
         </button>
       </div>
       <div className="select">
-        <select className="task-filter" name="todos">
+        <select 
+          className="task-filter"
+          name="tasks"
+          onChange={setFilter}>
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="incomplete">Incomplete</option>
