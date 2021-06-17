@@ -1,7 +1,25 @@
 .task {
-  padding: 8px 12px;
-  border: 1px solid #c3c3c3;
   border-radius: 8px;
+  margin-bottom: 8px;
+}
+.task:last-child {
+  margin-bottom: 0;
+}
+
+.task-header {
+  padding: 8px 12px;
+  width: 100%;
+  border-radius: 8px;
+  background-color: #e8e8e8;
+}
+.task.expanded .task-header {
+  border-radius: 8px 8px 0 0;
+}
+
+.task-body {
+  padding: 8ps 12px;
+  border-radius: 0 0 8px 8px;
+  background-color: #f7f7f7;
 }
 
 .task-title {
@@ -11,6 +29,17 @@
   max-width: 70%;
 }
 
+.task-title span {
+  content: '';
+  display: block;
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  background-color: #555555;
+  margin-right: 12px;
+}
+
+/* status changing */
 .task-status {
   display: flex;
 }
