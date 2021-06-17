@@ -11,12 +11,14 @@ const Form = ({ inputText, setInputText, tasks, setTasks }) => {
     e.preventDefault();
 
     setTasks([...tasks, {text: inputText, completed: false, id: Math.random()}]);
+    setInputText("");
   }
 
   return(
     <form className="app-form">
       <div className="new-input">
         <input 
+          value={inputText}
           className="task-input" 
           type="text"
           onChange={handleInput} />
