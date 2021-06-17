@@ -1,9 +1,13 @@
 import React from 'react';
 
+import Task from './Task';
+
 const TasksList = () => {
   return(
     <ul className="tasks-list">
-      item here
+      <Task />
+      <Task />
+      <Task />
     </ul>
   )
 }
