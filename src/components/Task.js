@@ -11,6 +11,9 @@ const Task = ({ task, tasks, setTasks }) => {
       return item;
     }))
   }
+  const handleDelete = (e) => {
+    setTasks(tasks.filter((t) => t.id !== task.id));
+  }
 
   return(
     <li className="task">
@@ -19,7 +22,9 @@ const Task = ({ task, tasks, setTasks }) => {
         <button 
           className="btn btn-success task-complete"
           onClick={handleDone}>Done!</button>
-        <button className="btn btn-danger task-trash">Trash</button>
+        <button
+          className="btn btn-danger task-trash"
+          onClick={handleDelete}>Trash</button>
       </div>
     </li>
   )
