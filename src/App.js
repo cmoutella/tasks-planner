@@ -20,7 +20,9 @@ function App() {
           setInputText={setInputText}
           tasks={tasks}
           setTasks={setTasks} />
-        <TasksList />
+        <TasksList 
+          tasks={tasks}
+        />
       </div>
     </div>
   );

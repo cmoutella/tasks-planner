@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Task = () => {
+const Task = ({ task }) => {
   return(
     <li className="task">
-      <p className="task-item">Task here</p>
+      <p className="task-item">{task.text}</p>
       <div className="task-actions">
         <button className="btn btn-success task-complete">Done!</button>
         <button className="btn btn-danger task-trash">Trash</button>
