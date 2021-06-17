@@ -2,17 +2,17 @@ import React from 'react';
 import './index.css';
 
 const Task = ({ task, tasks, setTasks }) => {
-  const handleDone = (e) => {
+  const handleDone = () => {
     handleStatus('done');
   }
 
-  const handleDoing = (e) => {
+  const handleDoing = () => {
     switch (task.status) {
-      case 'doing':
+      case 'started':
         handleStatus('paused');
         break;
       default:
-        handleStatus('doing');
+        handleStatus('started');
         break;
     }
   }
@@ -28,7 +28,7 @@ const Task = ({ task, tasks, setTasks }) => {
     }))
   }
 
-  const handleDelete = (e) => {
+  const handleDelete = () => {
     setTasks(tasks.filter((t) => t.id !== task.id));
   }
 
