@@ -40,13 +40,9 @@
   display: flex;
 }
 
-.todo-task {
+.task-input {
   margin-right: 16px;
   width: 250px;
-}
-
-.todo-submit::hover {
-  background-color: green;
 }
 
 select, input, button {
@@ -84,7 +80,7 @@ ul, li {
   margin: 0;
 }
 
-.todo {
+.task {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -93,19 +89,19 @@ ul, li {
   border-radius: 8px;
 }
 
-.todo-list {
+.tasks-list {
   margin-top: 40px;
 }
 
-.todo-completed {
+.task-completed {
   background-color: #AE759F;
   border: none;
 }
 
-.todo-actions {
+.task-actions {
   display: flex;
 }
 
-.todo-complete {
+.task-complete {
   margin-right: 12px;
 }
