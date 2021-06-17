@@ -12,9 +12,25 @@ function App() {
   const [filteredTasks, setFilteredTasks] = useState([]);
 
   useEffect(() => {
+    recoverLocal();
+  }, [])
+  useEffect(() => {
     handleFilter();
+    saveLocal();
   }, [tasks, filterState])
 
+  // Local Storage
+  const saveLocal = () => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+  const recoverLocal = () => {
+    if (localStorage.getItem('tasks') === null) {
+      localStorage.setItem('tasks', JSON.stringify([]));
+    } else {
+      let localTasks = JSON.parse(localStorage.getItem('tasks'));
+      setTasks(localTasks)
+    }
+  }
   const handleFilter = () => {
     switch (filterState) {
       case 'completed':
