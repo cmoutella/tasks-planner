@@ -3,25 +3,43 @@ import './index.css';
 
 const Task = ({ task, tasks, setTasks }) => {
   const handleDone = (e) => {
+    handleStatus('done');
+  }
+
+  const handleDoing = (e) => {
+    switch (task.status) {
+      case 'doing':
+        handleStatus('paused');
+        break;
+      default:
+        handleStatus('doing');
+        break;
+    }
+  }
+
+  const handleStatus = (param) => {
     setTasks(tasks.map((item) => {
       if (item.id === task.id) {
         return {
-          ...item, completed: !item.completed, status: 'done'
+          ...item, status: param
         };
       }
       return item;
     }))
   }
+
   const handleDelete = (e) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
   }
 
   return(
-    <li className={`task ${task.status} ${task.completed ? "task-completed" : "" }`}>
+    <li className={`task ${task.status}`}>
       <div className="task-header df df-a-c df-j-sb">
         <p className="task-title">{task.title}</p>
         <div className="task-status df">
-          <p className={`task-status-tag`}>{task.status}</p>
+          <button 
+            className={`task-status-tag`}
+            onClick={handleDoing}>{task.status}</button>
           <div className="task-actions df">
             <button 
               className="btn btn-success task-complete"
@@ -53,17 +71,3 @@ const Task = ({ task, tasks, setTasks }) => {
 }
 
 export default Task;
-
-/**
- * {
- *    title:
- *    id:
- *    status:
- *    subtasks: [
- *        {
- *          text:
- *          id:
- *        }
- *    ]
- * }
- */
