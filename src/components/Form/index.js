@@ -65,8 +65,10 @@ const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
           name="tasks"
           onChange={setFilter}>
           <option value="all">All</option>
-          <option value="completed">Completed</option>
-          <option value="incomplete">Incomplete</option>
+          <option value="created">Created</option>
+          <option value="started">Started</option>
+          <option value="paused">Paused</option>
+          <option value="done">Done</option>
         </select>
       </div>
     </form>

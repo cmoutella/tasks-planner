@@ -31,20 +31,17 @@ function App() {
       setTasks(localTasks)
     }
   }
+
+  // actions
   const handleFilter = () => {
     switch (filterState) {
-      case 'completed':
-        setFilteredTasks(tasks.filter(task => 
-          task.completed === true
-        ))
-        break;
-      case 'incomplete':
-        setFilteredTasks(tasks.filter(task => 
-          task.completed === false
-        ))
+      case 'all':
+        setFilteredTasks(tasks);
         break;
       default:
-        setFilteredTasks(tasks)
+        setFilteredTasks(tasks.filter(task => 
+          task.status === filterState
+        ))
         break;
     }
   }
