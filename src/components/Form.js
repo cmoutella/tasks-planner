@@ -1,11 +1,30 @@
 import React from 'react';
 
-const Form = () => {
+const Form = ({ inputText, setInputText, tasks, setTasks }) => {
+  // Improvements
+  // Block submit for empty input
+
+  const handleInput = (e) => {
+    setInputText(e.target.value);
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setTasks([...tasks, {text: inputText, completed: false, id: Math.random()}]);
+  }
+
   return(
     <form className="app-form">
       <div className="new-input">
-        <input className="task-input" type="text" />
-        <button className="btn btn-default task-submit">Add Task</button>
+        <input 
+          className="task-input" 
+          type="text"
+          onChange={handleInput} />
+        <button 
+          className="btn btn-default task-submit"
+          onClick={handleSubmit}>
+          Add Task
+        </button>
       </div>
       <div className="select">
         <select className="task-filter" name="todos">
