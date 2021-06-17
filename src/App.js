@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 
 import Form from './components/Form';
+import TasksList from './components/TasksList';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       </header>
       <div className="body">
         <Form />
+        <TasksList />
       </div>
     </div>
   );
