@@ -60,10 +60,23 @@ select, input, button {
   color: #fff;
   font-weight: 600;
 }
+.btn:hover {
+  transition: 0.3s;
+  transform: scale(1.05)
+}
 
 .btn-default {
   border: 1px solid #210B2C;
   color: #210B2C;
+  transition: 0.2s;
+}
+.btn-default:hover {
+  background-color: #ae759f;
+  border-color: #ae759f;
+}
+.btn-default:disabled {
+  border-color: #c3c3c3;
+  color: #c3c3c3;
 }
 
 .btn-success {

@@ -1,9 +1,6 @@
 import React from 'react';
 
 const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
-  // Improvements
-  // Block submit for empty input
-
   const handleInput = (e) => {
     setInputText(e.target.value);
   }
@@ -27,7 +24,8 @@ const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
           onChange={handleInput} />
         <button 
           className="btn btn-default task-submit"
-          onClick={handleSubmit}>
+          onClick={handleSubmit}
+          disabled={inputText === ""}>
           Add Task
         </button>
       </div>
