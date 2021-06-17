@@ -1,11 +1,24 @@
 import React from 'react';
 
-const Task = ({ task }) => {
+const Task = ({ task, tasks, setTasks }) => {
+  const handleDone = (e) => {
+    setTasks(tasks.map((item) => {
+      if (item.id === task.id) {
+        return {
+          ...item, completed: !item.completed
+        };
+      }
+      return item;
+    }))
+  }
+
   return(
     <li className="task">
       <p className="task-item">{task.text}</p>
       <div className="task-actions">
-        <button className="btn btn-success task-complete">Done!</button>
+        <button 
+          className="btn btn-success task-complete"
+          onClick={handleDone}>Done!</button>
         <button className="btn btn-danger task-trash">Trash</button>
       </div>
     </li>
