@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 
 const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
   const handleInput = (e) => {
@@ -7,11 +8,40 @@ const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setTasks([...tasks, {text: inputText, completed: false, id: Math.random()}]);
+    setTasks([...tasks, Task(inputText)]);
     setInputText("");
   }
   const setFilter = (e) => {
     setFilterState(e.target.value);
+  }
+  const Task = (title) => {
+    return {
+      title: title,
+      id: Math.random(),
+      status: 'created',
+      subtasks: [
+        {
+          id: Math.random(),
+          text: 'Restructure Data'
+        },
+        {
+          id: Math.random(),
+          text: 'Display new structure'
+        },
+        {
+          id: Math.random(),
+          text: 'Style'
+        },
+        {
+          id: Math.random(),
+          text: 'Input Subtasks'
+        },
+        {
+          id: Math.random(),
+          text: 'Show % completude'
+        }
+      ]      
+    }
   }
 
   return(
