@@ -52,18 +52,12 @@ const Task = ({ task, tasks, setTasks }) => {
       </div>
       <div className="task-body">
         <ul className="task-subtasks">
-          <li className="task-subtasks-item">
-            <input type="checkbox" name="subtask" id="subtask-01" />
-            <label htmlFor="subtask-01">Subtask 1</label>
-          </li>
-          <li className="task-subtasks-item">
-            <input type="checkbox" name="subtask" id="subtask-01" />
-            <label htmlFor="subtask-01">Subtask 2</label>
-          </li>
-          <li className="task-subtasks-item">
-            <input type="checkbox" name="subtask" id="subtask-01" />
-            <label htmlFor="subtask-01">Subtask 3</label>
-          </li>
+          {task.subtasks.map((item) => (
+            <li className="task-subtasks-item" key={item.id}>
+              <input type="checkbox" name="subtask" id={`subtask-${item.id}`} />
+              <label htmlFor={`subtask-${item.id}`}>{item.text}</label>
+            </li>
+          ))}
         </ul>
       </div>
     </li>
