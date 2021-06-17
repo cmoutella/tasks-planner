@@ -16,7 +16,7 @@ const Task = ({ task, tasks, setTasks }) => {
   }
 
   return(
-    <li className="task">
+    <li className={`task ${task.completed ? "task-completed" : "" }`}>
       <p className="task-item">{task.text}</p>
       <div className="task-actions">
         <button 
