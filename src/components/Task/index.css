@@ -28,33 +28,40 @@
   color: darkslategray;
 }
 .task.created .task-status-tag {
-  background-color: yellow;
+  background-color: #C490D1;
   border-color: transparent;
+  color: #fff;
 }
 .task.done .task-status-tag {
-  background-color: #AE759F;
+  background-color: #50723C;
   color: #fff;
   border-color: transparent;
 }
 .task.started .task-status-tag {
-  background-color: turquoise;
+  background-color: #A0D2DB;
   color: darkslategray;
   border-color: transparent;
 }
 .task.paused .task-status-tag {
-  background-color: cadetblue;
+  background-color: #7D8CC4;
   border-color: transparent;
-  opacity: 0.7;
+  color: #fff;
 }
 
 .tasks-list {
   margin-top: 40px;
 }
-
-.task-actions {
-  display: flex;
+.task-complete {
+  margin-right: 12px;
 }
 
-.task-complete {
+/* subtasks */
+.task-subtasks-item {
+  font-size: 14px;
+}
+.task-subtasks-item.done  {
+  text-decoration: line-through;
+}
+.task-subtasks-item input {
   margin-right: 12px;
 }

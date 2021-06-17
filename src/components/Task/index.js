@@ -42,7 +42,7 @@ const Task = ({ task, tasks, setTasks }) => {
             onClick={handleDoing}>{task.status}</button>
           <div className="task-actions df">
             <button 
-              className="btn btn-success task-complete"
+              className={`btn btn-success task-complete ${ task.status === 'done' ? 'hidden' : '' }`}
               onClick={handleDone}>Done!</button>
             <button
               className="btn btn-danger task-trash"
@@ -53,7 +53,7 @@ const Task = ({ task, tasks, setTasks }) => {
       <div className="task-body">
         <ul className="task-subtasks">
           {task.subtasks.map((item) => (
-            <li className="task-subtasks-item" key={item.id}>
+            <li className={`task-subtasks-item df df-a-c ${item.status}`} key={item.id}>
               <input type="checkbox" name="subtask" id={`subtask-${item.id}`} />
               <label htmlFor={`subtask-${item.id}`}>{item.text}</label>
             </li>

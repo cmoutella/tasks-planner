@@ -22,23 +22,28 @@ const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
       subtasks: [
         {
           id: Math.random(),
-          text: 'Restructure Data'
+          text: 'Restructure Data',
+          status: 'todo'
         },
         {
           id: Math.random(),
-          text: 'Display new structure'
+          text: 'Display new structure',
+          status: 'todo'
         },
         {
           id: Math.random(),
-          text: 'Style'
+          text: 'Style',
+          status: 'done'
         },
         {
           id: Math.random(),
-          text: 'Input Subtasks'
+          text: 'Input Subtasks',
+          status: 'todo'
         },
         {
           id: Math.random(),
-          text: 'Show % completude'
+          text: 'Show % completude',
+          status: 'done'
         }
       ]      
     }
