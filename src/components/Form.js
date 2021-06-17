@@ -4,11 +4,11 @@ const Form = () => {
   return(
     <form className="app-form">
       <div className="new-input">
-        <input className="todo-task" type="text" />
-        <button className="btn btn-default todo-submit">Add Task</button>
+        <input className="task-input" type="text" />
+        <button className="btn btn-default task-submit">Add Task</button>
       </div>
       <div className="select">
-        <select className="todo-filter" name="todos">
+        <select className="task-filter" name="todos">
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="incomplete">Incomplete</option>
