@@ -92,7 +92,8 @@ const Task = ({ task, tasks, setTasks }) => {
           subtasks={subtasks}
           setSubtasks={setSubtasks}
           showForm={showAddSubtask}
-          setShowForm={setShowAddSubtask} />
+          setShowForm={setShowAddSubtask}
+          showSubtasks={setExpanded} />
       </div>
     </li>
   )

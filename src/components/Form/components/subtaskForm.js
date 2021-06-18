@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SubtaskForm = ({subtasks, setSubtasks, showForm, setShowForm}) => {
+const SubtaskForm = ({subtasks, setSubtasks, showForm, setShowForm, showSubtasks}) => {
   const [inputValue, setInputValue] = useState("");
   
   const Subtask = (text) => {
@@ -23,6 +23,10 @@ const SubtaskForm = ({subtasks, setSubtasks, showForm, setShowForm}) => {
   const handleDrop = (e) => {
     e.preventDefault();
 
+    if (subtasks.length < 1) {
+      showSubtasks(false);
+      return;
+    }
     setShowForm(false);
   }
 
