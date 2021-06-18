@@ -64,7 +64,7 @@ const Task = ({ task, tasks, setTasks }) => {
           </div>
       </div>
       <div className={`task-body ${expanded ? '' : 'hidden'}`}>
-        <ul className="task-subtasks">
+        <ul className="subtasks">
           {task.subtasks.map((item) => (
             <Subtask
               subtask={item}

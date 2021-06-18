@@ -85,12 +85,40 @@
 }
 
 /* subtasks */
-.task-subtasks-item {
+.subtasks {
+  padding: 8px 12px;
+}
+.subtask {
   font-size: 14px;
 }
-.task-subtasks-item.done  {
+.subtask:last-child .subtask-add {
+  display: flex;
+}
+.subtask:last-child .subtask-trash {
+  margin-right: 8px;
+}
+.subtask.done .subtask-header  {
   text-decoration: line-through;
 }
-.task-subtasks-item input {
+.subtask input {
   margin-right: 12px;
+}
+
+.subtask-action {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  padding: 0;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.subtask-action.subtask-add {
+  background-color: #6CBEED;
+  display: none;
+}
+.subtask-action.subtask-trash {
+  background-color: #D83134;
+  margin: 0;
 }

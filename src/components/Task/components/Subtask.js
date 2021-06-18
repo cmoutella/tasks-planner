@@ -17,18 +17,30 @@ const Subtask = ({subtask, subtasks, setSubtasks}) => {
     }))
   }
 
+  const handleDelete = () => {
+    setSubtasks(subtasks.filter((s) => s.id !== subtask.id));
+  }
 
   return (
     <li 
-      className={`task-subtasks-item df df-a-c ${done ? 'done' : ''}`}
+      className={`subtask df df-a-c df-j-sb ${done ? 'done' : ''}`}
       key={subtask.id}>
-        <input 
-          type="checkbox"
-          name="subtask"
-          id={`subtask-${subtask.id}`}
-          checked={done}
-          onChange={handleStatus} />
-        <label htmlFor={`subtask-${subtask.id}`}>- {subtask.text}</label>
+        <div className="subtask-header df df-a-c">
+          <input 
+            type="checkbox"
+            name="subtask"
+            id={`subtask-${subtask.id}`}
+            checked={done}
+            onChange={handleStatus} />
+          <label htmlFor={`subtask-${subtask.id}`}>- {subtask.text}</label>
+        </div>
+        <div className="subtask-actions df df-a-c">
+          <button 
+            className="subtask-action subtask-trash df df-a-c df-j-c"
+            onClick={handleDelete}>x</button>
+          <button 
+            className="subtask-action subtask-add df df-a-c df-j-c">+</button>
+        </div>
     </li>
   )
 }
