@@ -8,7 +8,8 @@ const Task = ({ task, tasks, setTasks }) => {
   // Data States
   const [subtasks, setSubtasks] = useState(task.subtasks);
   const [title, setTitle] = useState(task.title);
-  const [status, setStatus] = useState(task.status)
+  const [status, setStatus] = useState(task.status);
+  const [progress, setProgress] = useState(Number(0));
 
   // View States
   const [expanded, setExpanded] = useState(false);
@@ -21,6 +22,9 @@ const Task = ({ task, tasks, setTasks }) => {
   useEffect(() => {
     handleSubtaskForm();
   }, [subtasks, expanded])
+  useEffect(() => {
+    handleProgress();
+  }, [subtasks, showAddSubtask]);
 
   const handleStatus = (e) => {
     const toStatus = e.target.dataset.setStatus;
@@ -51,6 +55,15 @@ const Task = ({ task, tasks, setTasks }) => {
   const handleSubtaskForm = () => {
     setShowAddSubtask(subtasks.length < 1)
   }
+  const handleProgress = () => {
+    const subtasksCompletedTotal = subtasks.filter((s) => s.done === false).length;
+    const subtasksTotal = subtasks.length;
+    let progress = subtasksCompletedTotal / subtasksTotal;
+
+    progress = progress*100;
+
+    setProgress(progress);
+  }
 
   return (
     <li 
@@ -58,7 +71,7 @@ const Task = ({ task, tasks, setTasks }) => {
       <div 
         className="task-header df df-a-c df-j-sb"
         onClick={handleExpand}>
-          <p className="task-title df df-a-c"><span></span> {task.title}</p>
+          <p className="task-title df df-a-c"><span></span> {`${progress}%`} {task.title}</p>
           <div className="task-status df">
             <button 
               className={`task-status-tag`}
@@ -85,7 +98,8 @@ const Task = ({ task, tasks, setTasks }) => {
               setSubtasks={setSubtasks}
               key={item.id}
               addSubtask={showAddSubtask}
-              setAddSubtask={setShowAddSubtask} />
+              setAddSubtask={setShowAddSubtask}
+              handleProgress={handleProgress} />
           ))}
         </ul>
         <SubtaskForm

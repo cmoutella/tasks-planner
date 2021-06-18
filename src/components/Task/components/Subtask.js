@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Subtask = ({subtask, subtasks, setSubtasks, addSubtask, setAddSubtask}) => {
+const Subtask = ({subtask, subtasks, setSubtasks, addSubtask, setAddSubtask, handleProgress}) => {
   const [done, setDone] = useState(subtask.done)
 
   const handleStatus = () => {
@@ -15,6 +15,7 @@ const Subtask = ({subtask, subtasks, setSubtasks, addSubtask, setAddSubtask}) =>
       }
       return s;
     }))
+    handleProgress();
   }
 
   const handleDelete = () => {
