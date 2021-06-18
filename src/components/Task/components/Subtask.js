@@ -21,6 +21,18 @@ const Subtask = ({subtask, subtasks, setSubtasks}) => {
     setSubtasks(subtasks.filter((s) => s.id !== subtask.id));
   }
 
+  const handleAdd = () => {
+    setSubtasks([...subtasks, Subtask('ximbalaie')])
+  }
+
+  const Subtask = (text) => {
+    return {
+      text: text,
+      id: Math.random(),
+      done: false
+    }
+  }
+
   return (
     <li 
       className={`subtask df df-a-c df-j-sb ${done ? 'done' : ''}`}
@@ -39,7 +51,8 @@ const Subtask = ({subtask, subtasks, setSubtasks}) => {
             className="subtask-action subtask-trash df df-a-c df-j-c"
             onClick={handleDelete}>x</button>
           <button 
-            className="subtask-action subtask-add df df-a-c df-j-c">+</button>
+            className="subtask-action subtask-add df df-a-c df-j-c"
+            onClick={handleAdd}>+</button>
         </div>
     </li>
   )
