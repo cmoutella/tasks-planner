@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 const Subtask = ({subtask, subtasks, setSubtasks}) => {
   const [done, setDone] = useState(subtask.done)
 
-
   const handleStatus = () => {
     setDone(!done)
 
@@ -27,9 +26,9 @@ const Subtask = ({subtask, subtasks, setSubtasks}) => {
           type="checkbox"
           name="subtask"
           id={`subtask-${subtask.id}`}
-          data-id={subtask.id}
+          checked={done}
           onChange={handleStatus} />
-        <label htmlFor={`subtask-${subtask.id}`}>{subtask.text}</label>
+        <label htmlFor={`subtask-${subtask.id}`}>- {subtask.text}</label>
     </li>
   )
 }

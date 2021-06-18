@@ -14,6 +14,7 @@ const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
   const setFilter = (e) => {
     setFilterState(e.target.value);
   }
+  
   const Task = (title) => {
     return {
       title: title,
@@ -23,7 +24,7 @@ const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
         {
           id: Math.random(),
           text: 'Restructure Data',
-          done: false
+          done: true
         },
         {
           id: Math.random(),
@@ -33,7 +34,7 @@ const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
         {
           id: Math.random(),
           text: 'Style',
-          done: false
+          done: true
         },
         {
           id: Math.random(),
