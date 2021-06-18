@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './index.css';
 
 const Task = ({ task, tasks, setTasks }) => {
@@ -34,36 +34,70 @@ const Task = ({ task, tasks, setTasks }) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
   }
 
+  const handleSubTaskClick = (e) => {
+    const elId = Number(e.target.dataset.id);
+    
+    setTasks(tasks.map((item) => {
+      if (item.id === task.id) {    
+        console.log(item);
+        handleSubTaskStatus(item, elId);
+        console.log(item);
+        return item;
+      }
+      return item;
+    }))
+  }
+
+  // why doesnt it work?
+  const handleSubTaskStatus = (currentTask, idParam) => {
+    currentTask.subtasks.map((i) => {
+      if (i.id === idParam) {
+        return {
+          ...i, done: !i.done
+        }
+      }
+      return i;
+    })
+  }
+
   const handleExpand = () => {
     setExpanded(!expanded);
   }
 
   return(
     <li 
-      className={`task ${task.status} ${expanded ? 'expanded' : ''}`}
-      onClick={handleExpand}>
-      <div className="task-header df df-a-c df-j-sb">
-        <p className="task-title df df-a-c"><span></span> {task.title}</p>
-        <div className="task-status df">
-          <button 
-            className={`task-status-tag`}
-            onClick={handleDoing}>{task.status}</button>
-          <div className="task-actions df">
+      className={`task ${task.status} ${expanded ? 'expanded' : ''}`}>
+      <div 
+        className="task-header df df-a-c df-j-sb"
+        onClick={handleExpand}>
+          <p className="task-title df df-a-c"><span></span> {task.title}</p>
+          <div className="task-status df">
             <button 
-              className={`btn btn-success task-complete ${ task.status === 'done' ? 'hidden' : '' }`}
-              onClick={handleDone}>Done!</button>
-            <button
-              className="btn btn-danger task-trash"
-              onClick={handleDelete}>Trash</button>
+              className={`task-status-tag`}
+              onClick={handleDoing}>{task.status}</button>
+            <div className="task-actions df">
+              <button 
+                className={`btn btn-success task-complete ${ task.status === 'done' ? 'hidden' : '' }`}
+                onClick={handleDone}>Done!</button>
+              <button
+                className="btn btn-danger task-trash"
+                onClick={handleDelete}>Trash</button>
+            </div>
           </div>
-        </div>
       </div>
       <div className={`task-body ${expanded ? '' : 'hidden'}`}>
         <ul className="task-subtasks">
           {task.subtasks.map((item) => (
-            <li className={`task-subtasks-item df df-a-c ${item.status}`} key={item.id}>
-              <input type="checkbox" name="subtask" id={`subtask-${item.id}`} />
-              <label htmlFor={`subtask-${item.id}`}>{item.text}</label>
+            <li 
+              className={`task-subtasks-item df df-a-c ${item.done ? 'done' : ''}`}
+              key={item.id}>
+                <input 
+                  type="checkbox"
+                  name="subtask"
+                  id={`subtask-${item.id}`}
+                  data-id={item.id}
+                  onChange={handleSubTaskClick} />
+                <label htmlFor={`subtask-${item.id}`}>{item.text}</label>
             </li>
           ))}
         </ul>
