@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Subtask = ({subtask, subtasks, setSubtasks}) => {
+const Subtask = ({subtask, subtasks, setSubtasks, addSubtask, setAddSubtask}) => {
   const [done, setDone] = useState(subtask.done)
 
   const handleStatus = () => {
@@ -22,15 +22,7 @@ const Subtask = ({subtask, subtasks, setSubtasks}) => {
   }
 
   const handleAdd = () => {
-    setSubtasks([...subtasks, Subtask('ximbalaie')])
-  }
-
-  const Subtask = (text) => {
-    return {
-      text: text,
-      id: Math.random(),
-      done: false
-    }
+    setAddSubtask(true);
   }
 
   return (

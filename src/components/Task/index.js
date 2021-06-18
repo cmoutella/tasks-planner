@@ -5,14 +5,22 @@ import Subtask from './components/Subtask';
 import SubtaskForm from '../Form/components/subtaskForm';
 
 const Task = ({ task, tasks, setTasks }) => {
-  const [expanded, setExpanded] = useState(false);
+  // Data States
   const [subtasks, setSubtasks] = useState(task.subtasks);
   const [title, setTitle] = useState(task.title);
   const [status, setStatus] = useState(task.status)
 
+  // View States
+  const [expanded, setExpanded] = useState(false);
+  const [showAddSubtask, setShowAddSubtask] = useState(false);
+
   useEffect(() => {
     updateTask();
   }, [subtasks, title, status])
+  
+  useEffect(() => {
+    handleSubtaskForm();
+  }, [subtasks])
 
   const handleStatus = (e) => {
     const toStatus = e.target.dataset.setStatus;
@@ -40,6 +48,9 @@ const Task = ({ task, tasks, setTasks }) => {
   const handleExpand = () => {
     setExpanded(!expanded);
   }
+  const handleSubtaskForm = () => {
+    setShowAddSubtask(subtasks.length < 1)
+  }
 
   return (
     <li 
@@ -66,16 +77,21 @@ const Task = ({ task, tasks, setTasks }) => {
       </div>
       <div className={`task-body ${expanded ? '' : 'hidden'}`}>
         <ul className="subtasks">
-          <SubtaskForm
-            subtasks={subtasks}
-            setSubtasks={setSubtasks} />
+          
           {task.subtasks.map((item) => (
             <Subtask
               subtask={item}
               subtasks={subtasks}
               setSubtasks={setSubtasks}
-              key={item.id} />
+              key={item.id}
+              addSubtask={showAddSubtask}
+              setAddSubtask={setShowAddSubtask} />
           ))}
+          <SubtaskForm
+            subtasks={subtasks}
+            setSubtasks={setSubtasks}
+            showForm={showAddSubtask}
+            setShowForm={setShowAddSubtask} />
         </ul>
       </div>
     </li>

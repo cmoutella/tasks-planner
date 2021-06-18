@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SubtaskForm = ({subtasks, setSubtasks}) => {
+const SubtaskForm = ({subtasks, setSubtasks, showForm, setShowForm}) => {
   const [inputValue, setInputValue] = useState("");
   
   const Subtask = (text) => {
@@ -17,10 +17,11 @@ const SubtaskForm = ({subtasks, setSubtasks}) => {
     e.preventDefault();
 
     setSubtasks([...subtasks, Subtask(inputValue)])
+    setShowForm(false);
   }
 
   return (
-    <li>
+    <li className={showForm ? '' : 'hidden'}>
       <form className="subtask-form df df-a-c">
         <input 
           type="text"
