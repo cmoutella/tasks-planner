@@ -49,7 +49,7 @@ const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
     }
   }
 
-  return(
+  return (
     <form className="app-form">
       <div className="new-input">
         <input 

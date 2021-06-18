@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './index.css';
 
+import Subtask from './components/Subtask';
+
 const Task = ({ task, tasks, setTasks }) => {
   const [expanded, setExpanded] = useState(false);
 
@@ -64,7 +66,7 @@ const Task = ({ task, tasks, setTasks }) => {
     setExpanded(!expanded);
   }
 
-  return(
+  return (
     <li 
       className={`task ${task.status} ${expanded ? 'expanded' : ''}`}>
       <div 
@@ -88,17 +90,10 @@ const Task = ({ task, tasks, setTasks }) => {
       <div className={`task-body ${expanded ? '' : 'hidden'}`}>
         <ul className="task-subtasks">
           {task.subtasks.map((item) => (
-            <li 
-              className={`task-subtasks-item df df-a-c ${item.done ? 'done' : ''}`}
-              key={item.id}>
-                <input 
-                  type="checkbox"
-                  name="subtask"
-                  id={`subtask-${item.id}`}
-                  data-id={item.id}
-                  onChange={handleSubTaskClick} />
-                <label htmlFor={`subtask-${item.id}`}>{item.text}</label>
-            </li>
+            <Subtask
+              subtask={item}
+              handleStatus={handleSubTaskClick}
+              key={item.id} />
           ))}
         </ul>
       </div>
