@@ -40,7 +40,8 @@ const SubtaskForm = ({subtasks, setSubtasks, showForm, setShowForm, showSubtasks
           onChange={handleInput} />
         <button 
           className="btn btn-default subtask-btn subtask-btn-add"
-          onClick={handleAdd}>Add</button>
+          onClick={handleAdd}
+          disabled={inputValue === ""}>Add</button>
         <button 
           className="btn btn-danger subtask-btn subtask-btn-trash"
           onClick={handleDrop}>-</button>
