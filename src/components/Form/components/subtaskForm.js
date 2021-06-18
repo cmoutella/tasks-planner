@@ -31,7 +31,7 @@ const SubtaskForm = ({subtasks, setSubtasks, showForm, setShowForm, showSubtasks
   }
 
   return (
-    <li className={showForm ? '' : 'hidden'}>
+    <div className={showForm ? '' : 'hidden'}>
       <form className="subtask-form df df-a-c">
         <input 
           value={inputValue}
@@ -45,7 +45,7 @@ const SubtaskForm = ({subtasks, setSubtasks, showForm, setShowForm, showSubtasks
           className="btn btn-danger subtask-btn subtask-btn-trash"
           onClick={handleDrop}>-</button>
       </form>
-    </li>
+    </div>
   )
 }
 
