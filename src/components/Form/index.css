@@ -11,3 +11,22 @@
   margin-right: 16px;
   width: 250px;
 }
+
+/* subtask form */
+.subtask-input {
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+  background-color: transparent;
+  margin-right: 12px;
+  padding: 2px 4px;
+  height: unset;
+  width: 95%;
+}
+
+.subtask-submit {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 20px;
+  height: unset;
+}

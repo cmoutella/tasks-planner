@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './index.css';
 
 import Subtask from './components/Subtask';
+import SubtaskForm from '../Form/components/subtaskForm';
 
 const Task = ({ task, tasks, setTasks }) => {
   const [expanded, setExpanded] = useState(false);
@@ -65,6 +66,9 @@ const Task = ({ task, tasks, setTasks }) => {
       </div>
       <div className={`task-body ${expanded ? '' : 'hidden'}`}>
         <ul className="subtasks">
+          <SubtaskForm
+            subtasks={subtasks}
+            setSubtasks={setSubtasks} />
           {task.subtasks.map((item) => (
             <Subtask
               subtask={item}
