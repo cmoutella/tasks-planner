@@ -6,45 +6,29 @@ import Subtask from './components/Subtask';
 const Task = ({ task, tasks, setTasks }) => {
   const [expanded, setExpanded] = useState(false);
   const [subtasks, setSubtasks] = useState(task.subtasks);
+  const [title, setTitle] = useState(task.title);
+  const [status, setStatus] = useState(task.status)
+
+  useEffect(() => {
+    updateTask();
+  }, [subtasks, title, status])
 
   const handleStatus = (e) => {
     const toStatus = e.target.dataset.setStatus;
-
-    setTasks(tasks.map((item) => {
-      if (item.id === task.id) {
-        return {
-          ...item, status: toStatus
-        };
-      }
-      return item;
-    }))
+    setStatus(toStatus);
   }
 
   const handleDelete = () => {
     setTasks(tasks.filter((t) => t.id !== task.id));
   }
 
-  const handleSubtaskStatus = (idParam, e) => {
-    setSubtasks(subtasks.map((s) => {
-      if (s.id === idParam) {
-
-        return {
-          ...s, done: !s.done
-        }
-      }
-      return s;
-    }))
-  }
-
-  const updateTask = (updatedTask: task, e) => {
-    console.log(e.target)
-
+  const updateTask = () => {
     setTasks(tasks.map((t) => {
       if (t.id === task.id) {
         return {
-          title: updatedTask.title,
+          title: title,
           id: task.id,
-          status: updatedTask.status,
+          status: status,
           subtasks: subtasks
         }
       }
@@ -58,7 +42,7 @@ const Task = ({ task, tasks, setTasks }) => {
 
   return (
     <li 
-      className={`task ${task.status} ${expanded ? 'expanded' : ''}`}>
+      className={`task ${status} ${expanded ? 'expanded' : ''}`}>
       <div 
         className="task-header df df-a-c df-j-sb"
         onClick={handleExpand}>
@@ -66,11 +50,11 @@ const Task = ({ task, tasks, setTasks }) => {
           <div className="task-status df">
             <button 
               className={`task-status-tag`}
-              data-set-status={task.status === 'started' ? 'paused' : 'started'}
-              onClick={handleStatus}>{task.status}</button>
+              data-set-status={status === 'started' ? 'paused' : 'started'}
+              onClick={handleStatus}>{status}</button>
             <div className="task-actions df">
               <button 
-                className={`btn btn-success task-complete ${ task.status === 'done' ? 'hidden' : '' }`}
+                className={`btn btn-success task-complete ${ status === 'done' ? 'hidden' : '' }`}
                 data-set-status="done"
                 onClick={handleStatus}>Done!</button>
               <button
@@ -84,8 +68,8 @@ const Task = ({ task, tasks, setTasks }) => {
           {task.subtasks.map((item) => (
             <Subtask
               subtask={item}
-              handleStatus={handleSubtaskStatus}
-              parentTask={task}
+              subtasks={subtasks}
+              setSubtasks={setSubtasks}
               key={item.id} />
           ))}
         </ul>
