@@ -13,9 +13,13 @@
 }
 
 /* subtask form */
+.subtask-form {
+  padding: 8px 12px 16px;
+}
+
 .subtask-input {
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #888888;
   border-radius: 0;
   background-color: transparent;
   margin-right: 12px;
@@ -24,9 +28,18 @@
   width: 95%;
 }
 
-.subtask-submit {
+.subtask-btn {
   font-size: 12px;
   padding: 2px 6px;
   border-radius: 20px;
   height: unset;
+  border-color: #555555;
+}
+.subtask-btn-add {
+  margin-right: 8px;
+  color: #555555;
+}
+.subtask-btn-trash {
+  font-size: 16px;
+  line-height: 0.8;
 }

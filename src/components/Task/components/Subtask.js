@@ -40,7 +40,7 @@ const Subtask = ({subtask, subtasks, setSubtasks, addSubtask, setAddSubtask}) =>
         </div>
         <div className="subtask-actions df df-a-c">
           <button 
-            className="subtask-action subtask-trash df df-a-c df-j-c"
+            className="subtask-action subtask-trash df df-a-c df-j-c btn-danger"
             onClick={handleDelete}>x</button>
           <button 
             className="subtask-action subtask-add df df-a-c df-j-c"

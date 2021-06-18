@@ -20,7 +20,7 @@ const Task = ({ task, tasks, setTasks }) => {
   
   useEffect(() => {
     handleSubtaskForm();
-  }, [subtasks])
+  }, [subtasks, expanded])
 
   const handleStatus = (e) => {
     const toStatus = e.target.dataset.setStatus;
@@ -87,12 +87,12 @@ const Task = ({ task, tasks, setTasks }) => {
               addSubtask={showAddSubtask}
               setAddSubtask={setShowAddSubtask} />
           ))}
-          <SubtaskForm
-            subtasks={subtasks}
-            setSubtasks={setSubtasks}
-            showForm={showAddSubtask}
-            setShowForm={setShowAddSubtask} />
         </ul>
+        <SubtaskForm
+          subtasks={subtasks}
+          setSubtasks={setSubtasks}
+          showForm={showAddSubtask}
+          setShowForm={setShowAddSubtask} />
       </div>
     </li>
   )

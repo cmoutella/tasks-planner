@@ -44,7 +44,6 @@ code {
   border: none;
   display: block;
   cursor: pointer;
-  color: #fff;
   font-weight: 600;
   font-size: 12px;
 }
@@ -70,10 +69,12 @@ code {
 
 .btn-success {
   background-color: #69995D;
+  color: #fff;
 }
 
 .btn-danger {
   background-color: #BF4342;
+  color: #fff;
 }
 
 /* clearers */
