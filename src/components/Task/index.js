@@ -1,31 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 
 import Subtask from './components/Subtask';
 
 const Task = ({ task, tasks, setTasks }) => {
   const [expanded, setExpanded] = useState(false);
+  const [subtasks, setSubtasks] = useState(task.subtasks);
 
-  const handleDone = () => {
-    handleStatus('done');
-  }
+  const handleStatus = (e) => {
+    const toStatus = e.target.dataset.setStatus;
 
-  const handleDoing = () => {
-    switch (task.status) {
-      case 'started':
-        handleStatus('paused');
-        break;
-      default:
-        handleStatus('started');
-        break;
-    }
-  }
-
-  const handleStatus = (param) => {
     setTasks(tasks.map((item) => {
       if (item.id === task.id) {
         return {
-          ...item, status: param
+          ...item, status: toStatus
         };
       }
       return item;
@@ -36,30 +24,32 @@ const Task = ({ task, tasks, setTasks }) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
   }
 
-  const handleSubTaskClick = (e) => {
-    const elId = Number(e.target.dataset.id);
-    
-    setTasks(tasks.map((item) => {
-      if (item.id === task.id) {    
-        console.log(item);
-        handleSubTaskStatus(item, elId);
-        console.log(item);
-        return item;
+  const handleSubtaskStatus = (idParam, e) => {
+    setSubtasks(subtasks.map((s) => {
+      if (s.id === idParam) {
+
+        return {
+          ...s, done: !s.done
+        }
       }
-      return item;
+      return s;
     }))
   }
 
-  // why doesnt it work?
-  const handleSubTaskStatus = (currentTask, idParam) => {
-    currentTask.subtasks.map((i) => {
-      if (i.id === idParam) {
+  const updateTask = (updatedTask: task, e) => {
+    console.log(e.target)
+
+    setTasks(tasks.map((t) => {
+      if (t.id === task.id) {
         return {
-          ...i, done: !i.done
+          title: updatedTask.title,
+          id: task.id,
+          status: updatedTask.status,
+          subtasks: subtasks
         }
       }
-      return i;
-    })
+      return t;
+    }))
   }
 
   const handleExpand = () => {
@@ -76,11 +66,13 @@ const Task = ({ task, tasks, setTasks }) => {
           <div className="task-status df">
             <button 
               className={`task-status-tag`}
-              onClick={handleDoing}>{task.status}</button>
+              data-set-status={task.status === 'started' ? 'paused' : 'started'}
+              onClick={handleStatus}>{task.status}</button>
             <div className="task-actions df">
               <button 
                 className={`btn btn-success task-complete ${ task.status === 'done' ? 'hidden' : '' }`}
-                onClick={handleDone}>Done!</button>
+                data-set-status="done"
+                onClick={handleStatus}>Done!</button>
               <button
                 className="btn btn-danger task-trash"
                 onClick={handleDelete}>Trash</button>
@@ -92,7 +84,8 @@ const Task = ({ task, tasks, setTasks }) => {
           {task.subtasks.map((item) => (
             <Subtask
               subtask={item}
-              handleStatus={handleSubTaskClick}
+              handleStatus={handleSubtaskStatus}
+              parentTask={task}
               key={item.id} />
           ))}
         </ul>
