@@ -9,6 +9,7 @@ const Task = ({ task, tasks, setTasks }) => {
   const [subtasks, setSubtasks] = useState(task.subtasks);
   const [title, setTitle] = useState(task.title);
   const [status, setStatus] = useState(task.status);
+  const [showProgress, setShowProgress] = useState(false); 
   const [progress, setProgress] = useState(Number(0));
 
   // View States
@@ -22,9 +23,6 @@ const Task = ({ task, tasks, setTasks }) => {
   useEffect(() => {
     handleSubtaskForm();
   }, [subtasks, expanded])
-  useEffect(() => {
-    handleProgress();
-  }, [subtasks, showAddSubtask]);
 
   const handleStatus = (e) => {
     const toStatus = e.target.dataset.setStatus;
@@ -35,8 +33,8 @@ const Task = ({ task, tasks, setTasks }) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
   }
 
-  const updateTask = () => {
-    setTasks(tasks.map((t) => {
+  const updateTask = async () => {
+    await setTasks(tasks.map((t) => {
       if (t.id === task.id) {
         return {
           title: title,
@@ -56,13 +54,23 @@ const Task = ({ task, tasks, setTasks }) => {
     setShowAddSubtask(subtasks.length < 1)
   }
   const handleProgress = () => {
-    const subtasksCompletedTotal = subtasks.filter((s) => s.done === false).length;
+    // needs to wait for subtasks to update;
+    const subtasksCompleted = subtasks.filter((s) => s.done === true);
+    const subtasksCompletedTotal = subtasksCompleted.length;
     const subtasksTotal = subtasks.length;
     let progress = subtasksCompletedTotal / subtasksTotal;
 
     progress = progress*100;
 
+    console.log(subtasksCompleted);
+
     setProgress(progress);
+    
+    if (subtasksTotal <= 1 || subtasksCompletedTotal < 1) {
+      setShowProgress(false);
+    } else {
+      setShowProgress(true);
+    }
   }
 
   return (
@@ -71,7 +79,7 @@ const Task = ({ task, tasks, setTasks }) => {
       <div 
         className="task-header df df-a-c df-j-sb"
         onClick={handleExpand}>
-          <p className="task-title df df-a-c"><span></span> {`${progress}%`} {task.title}</p>
+          <p className="task-title df df-a-c"><span></span> {showProgress? `${progress}%` : ""} {task.title}</p>
           <div className="task-status df">
             <button 
               className={`task-status-tag`}

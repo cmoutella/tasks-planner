@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 const Subtask = ({subtask, subtasks, setSubtasks, addSubtask, setAddSubtask, handleProgress}) => {
-  const [done, setDone] = useState(subtask.done)
+  const [done, setDone] = useState(false)
 
-  const handleStatus = () => {
-    setDone(!done)
+  const handleStatus = async() => {
+    setDone(!done);
 
-    setSubtasks(subtasks.map((s) => {
+    await setSubtasks(subtasks.map((s) => {
       if (s.id === subtask.id) {
 
         return {
@@ -15,7 +15,8 @@ const Subtask = ({subtask, subtasks, setSubtasks, addSubtask, setAddSubtask, han
       }
       return s;
     }))
-    handleProgress();
+    // needs to wait for subtasks to update;
+    handleProgress(done);
   }
 
   const handleDelete = () => {
