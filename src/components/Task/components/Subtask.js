@@ -1,26 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Subtask = ({subtask, subtasks, setSubtasks, addSubtask, setAddSubtask, handleProgress}) => {
-  const [done, setDone] = useState(false)
+const Subtask = ({subtask, subtasks, setSubtasks, setAddSubtask, handleProgress}) => {
+  const [done, setDone] = useState(subtask.done);
+
+  useEffect(() => {
+    setDone(subtask.done);
+    console.log('done', done);
+  }, [subtask])
+  useEffect(() => {
+    handleProgress();
+    console.log('progresso');
+  }, [done])
 
   const handleStatus = async() => {
-    setDone(!done);
-
     await setSubtasks(subtasks.map((s) => {
       if (s.id === subtask.id) {
 
         return {
-          ...s, done: done
+          ...s, done: !done
         }
       }
       return s;
     }))
-    // needs to wait for subtasks to update;
-    handleProgress(done);
   }
 
   const handleDelete = () => {
     setSubtasks(subtasks.filter((s) => s.id !== subtask.id));
+
+    //não atualiza o progresso quando deleta uma subtask
+    handleProgress();
   }
 
   const handleAdd = () => {

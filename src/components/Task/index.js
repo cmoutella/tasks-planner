@@ -18,17 +18,18 @@ const Task = ({ task, tasks, setTasks }) => {
 
   useEffect(() => {
     updateTask();
-  }, [subtasks, title, status])
-  
+  }, [subtasks, title, status]);
+  useEffect(() => {
+    setSubtasks(task.subtasks);
+  }, [task])
   useEffect(() => {
     handleSubtaskForm();
-  }, [subtasks, expanded])
+  }, [subtasks, expanded]);
 
   const handleStatus = (e) => {
     const toStatus = e.target.dataset.setStatus;
     setStatus(toStatus);
   }
-
   const handleDelete = () => {
     setTasks(tasks.filter((t) => t.id !== task.id));
   }
@@ -53,20 +54,18 @@ const Task = ({ task, tasks, setTasks }) => {
   const handleSubtaskForm = () => {
     setShowAddSubtask(subtasks.length < 1)
   }
-  const handleProgress = () => {
-    // needs to wait for subtasks to update;
+  const handleProgress = () => {  
     const subtasksCompleted = subtasks.filter((s) => s.done === true);
     const subtasksCompletedTotal = subtasksCompleted.length;
     const subtasksTotal = subtasks.length;
-    let progress = subtasksCompletedTotal / subtasksTotal;
-
-    progress = progress*100;
+    let completionProgress = subtasksCompletedTotal / subtasksTotal;
 
     console.log(subtasksCompleted);
 
-    setProgress(progress);
+    setProgress(completionProgress*100);
+    console.log(progress);
     
-    if (subtasksTotal <= 1 || subtasksCompletedTotal < 1) {
+    if ( completionProgress === 0 || completionProgress === 1 || subtasksTotal <= 1 || subtasksCompletedTotal <= 0) {
       setShowProgress(false);
     } else {
       setShowProgress(true);
