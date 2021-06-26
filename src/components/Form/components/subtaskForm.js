@@ -34,7 +34,7 @@ const SubtaskForm = ({subtasks, setSubtasks, showForm, setShowForm, showSubtasks
     setShowForm(false);
   }
   const handleFocus = () => {
-    const input = document.querySelector('input.subtask-input');
+    const input = document.querySelector('.subtask-form > .subtask-input');
     input.focus();
   }
 
