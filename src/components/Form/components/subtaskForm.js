@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SubtaskForm = ({subtasks, setSubtasks, showForm, setShowForm, showSubtasks}) => {
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    handleFocus();
+  })
   
   const Subtask = (text) => {
     return {
@@ -28,6 +32,10 @@ const SubtaskForm = ({subtasks, setSubtasks, showForm, setShowForm, showSubtasks
       return;
     }
     setShowForm(false);
+  }
+  const handleFocus = () => {
+    const input = document.querySelector('input.subtask-input');
+    input.focus();
   }
 
   return (
