@@ -4,6 +4,8 @@ You can
 - add and delete tasks
 - add and delete subtasks to tasks
 - change task status
+- update task name
+- update subtasks text
 
 It can
 - undestand status changes based on subtasks completion
