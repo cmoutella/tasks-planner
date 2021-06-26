@@ -1,3 +1,23 @@
+# Week Planner View
+
+You can
+- add and delete tasks
+- add and delete subtasks to tasks
+- change task status
+
+It can
+- undestand status changes based on subtasks completion
+- show progress % os tasks
+
+
+There are improvements to be done on repository's issues.
+
+
+
+~
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
