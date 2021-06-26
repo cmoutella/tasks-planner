@@ -7,6 +7,7 @@ import SubtaskForm from '../Form/components/subtaskForm';
 const Task = ({ task, tasks, setTasks }) => {
   // Data States
   const [subtasks, setSubtasks] = useState(task.subtasks);
+  const [totalSubstasks, setTotalSubtasks] = useState(subtasks.length);
   const [title, setTitle] = useState(task.title);
   const [status, setStatus] = useState(task.status);
   const [showProgress, setShowProgress] = useState(false); 
@@ -25,6 +26,12 @@ const Task = ({ task, tasks, setTasks }) => {
   useEffect(() => {
     handleSubtaskForm();
   }, [subtasks, expanded]);
+  useEffect(() => {
+    setTotalSubtasks(subtasks.length);
+  }, [subtasks])
+  useEffect(() => {
+    handleProgress();
+  }, [totalSubstasks])
 
   const handleStatus = (e) => {
     const toStatus = e.target.dataset.setStatus;
@@ -54,16 +61,16 @@ const Task = ({ task, tasks, setTasks }) => {
   const handleSubtaskForm = () => {
     setShowAddSubtask(subtasks.length < 1)
   }
+  const handleSubtaskDelete = (id) => {
+    setSubtasks(subtasks.filter((s) => s.id !== id));
+  }
   const handleProgress = () => {  
     const subtasksCompleted = subtasks.filter((s) => s.done === true);
     const subtasksCompletedTotal = subtasksCompleted.length;
     const subtasksTotal = subtasks.length;
     let completionProgress = subtasksCompletedTotal / subtasksTotal;
 
-    console.log(subtasksCompleted);
-
     setProgress(completionProgress*100);
-    console.log(progress);
     
     if ( completionProgress === 0 || completionProgress === 1 || subtasksTotal <= 1 || subtasksCompletedTotal <= 0) {
       setShowProgress(false);
@@ -105,6 +112,7 @@ const Task = ({ task, tasks, setTasks }) => {
               setSubtasks={setSubtasks}
               key={item.id}
               addSubtask={showAddSubtask}
+              deleteSubtask={handleSubtaskDelete}
               setAddSubtask={setShowAddSubtask}
               handleProgress={handleProgress} />
           ))}

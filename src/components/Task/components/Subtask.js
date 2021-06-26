@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const Subtask = ({subtask, subtasks, setSubtasks, setAddSubtask, handleProgress}) => {
+const Subtask = ({subtask, subtasks, setSubtasks, setAddSubtask, deleteSubtask, handleProgress}) => {
   const [done, setDone] = useState(subtask.done);
 
   useEffect(() => {
     setDone(subtask.done);
-    console.log('done', done);
   }, [subtask])
   useEffect(() => {
     handleProgress();
-    console.log('progresso');
   }, [done])
 
   const handleStatus = async() => {
@@ -25,10 +23,7 @@ const Subtask = ({subtask, subtasks, setSubtasks, setAddSubtask, handleProgress}
   }
 
   const handleDelete = () => {
-    setSubtasks(subtasks.filter((s) => s.id !== subtask.id));
-
-    //não atualiza o progresso quando deleta uma subtask
-    handleProgress();
+    deleteSubtask(subtask.id);
   }
 
   const handleAdd = () => {
