@@ -71,6 +71,14 @@ const Task = ({ task, tasks, setTasks }) => {
     let completionProgress = subtasksCompletedTotal / subtasksTotal;
 
     setProgress(completionProgress*100);
+
+    if (completionProgress === 0) {
+      setStatus('created')
+    } else if (completionProgress === 1) {
+      setStatus('done');
+    } else {
+      setStatus('started');
+    }
     
     if ( completionProgress === 0 || completionProgress === 1 || subtasksTotal <= 1 || subtasksCompletedTotal <= 0) {
       setShowProgress(false);
@@ -83,27 +91,27 @@ const Task = ({ task, tasks, setTasks }) => {
     <li 
       className={`task ${status} ${expanded ? 'expanded' : ''}`}>
       <div 
-        className="task-header df df-a-c df-j-sb"
+        className='task-header df df-a-c df-j-sb'
         onClick={handleExpand}>
-          <p className="task-title df df-a-c"><span></span> {showProgress? `${progress}%` : ""} {task.title}</p>
-          <div className="task-status df">
+          <p className='task-title df df-a-c'><span></span> {showProgress? `${progress}%` : ''} {task.title}</p>
+          <div className='task-status df'>
             <button 
               className={`task-status-tag`}
               data-set-status={status === 'started' ? 'paused' : 'started'}
               onClick={handleStatus}>{status}</button>
-            <div className="task-actions df">
+            <div className='task-actions df'>
               <button 
                 className={`btn btn-success task-complete ${ status === 'done' ? 'hidden' : '' }`}
-                data-set-status="done"
+                data-set-status='done'
                 onClick={handleStatus}>Done!</button>
               <button
-                className="btn btn-danger task-trash"
+                className='btn btn-danger task-trash'
                 onClick={handleDelete}>Trash</button>
             </div>
           </div>
       </div>
       <div className={`task-body ${expanded ? '' : 'hidden'}`}>
-        <ul className="subtasks">
+        <ul className='subtasks'>
           
           {task.subtasks.map((item) => (
             <Subtask
