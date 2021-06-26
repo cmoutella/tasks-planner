@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-import Form from './components/Form';
+import Form from './components/Form/index';
 import TasksList from './components/TasksList';
 
 function App() {
@@ -31,20 +31,17 @@ function App() {
       setTasks(localTasks)
     }
   }
+
+  // actions
   const handleFilter = () => {
     switch (filterState) {
-      case 'completed':
-        setFilteredTasks(tasks.filter(task => 
-          task.completed === true
-        ))
-        break;
-      case 'incomplete':
-        setFilteredTasks(tasks.filter(task => 
-          task.completed === false
-        ))
+      case 'all':
+        setFilteredTasks(tasks);
         break;
       default:
-        setFilteredTasks(tasks)
+        setFilteredTasks(tasks.filter(task => 
+          task.status === filterState
+        ))
         break;
     }
   }

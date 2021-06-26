@@ -1,0 +1,123 @@
+.task {
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.task:last-child {
+  margin-bottom: 0;
+}
+
+.task-header {
+  padding: 8px 12px;
+  width: 100%;
+  border-radius: 8px;
+  background-color: #e8e8e8;
+}
+.task.expanded .task-header {
+  border-radius: 8px 8px 0 0;
+}
+
+.task-body {
+  padding: 8ps 12px;
+  border-radius: 0 0 8px 8px;
+  background-color: #f7f7f7;
+}
+
+.task-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  max-width: 70%;
+}
+
+.task-title span {
+  content: '';
+  display: block;
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  background-color: #555555;
+  margin-right: 12px;
+}
+
+/* status changing */
+.task-status {
+  display: flex;
+}
+
+.task-status-tag {
+  border-radius: 3px;
+  font-weight: 800;
+  padding: 4px 8px;
+  margin: 0;
+  margin-right: 12px;
+  text-transform: uppercase;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  color: darkslategray;
+}
+.task.created .task-status-tag {
+  background-color: #C490D1;
+  border-color: transparent;
+  color: #fff;
+}
+.task.done .task-status-tag {
+  background-color: #50723C;
+  color: #fff;
+  border-color: transparent;
+}
+.task.started .task-status-tag {
+  background-color: #A0D2DB;
+  color: darkslategray;
+  border-color: transparent;
+}
+.task.paused .task-status-tag {
+  background-color: #7D8CC4;
+  border-color: transparent;
+  color: #fff;
+}
+
+.tasks-list {
+  margin-top: 40px;
+}
+.task-complete {
+  margin-right: 12px;
+}
+
+/* subtasks */
+.subtasks {
+  padding: 8px 12px;
+}
+.subtask {
+  font-size: 14px;
+}
+.subtask:last-child .subtask-add {
+  display: flex;
+}
+.subtask:last-child .subtask-trash {
+  margin-right: 8px;
+}
+.subtask.done .subtask-header  {
+  text-decoration: line-through;
+}
+.subtask input {
+  margin-right: 12px;
+}
+
+.subtask-action {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  padding: 0;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.subtask-action.subtask-add {
+  background-color: #6CBEED;
+  display: none;
+}
+.subtask-action.subtask-trash {
+  margin: 0;
+}
