@@ -3,6 +3,7 @@ import './index.css';
 
 import Subtask from './components/Subtask';
 import SubtaskForm from '../Form/components/subtaskForm';
+import UpdateForm from '../Form/components/updateForm';
 
 const Task = ({ task, tasks, setTasks }) => {
   // Data States
@@ -12,6 +13,7 @@ const Task = ({ task, tasks, setTasks }) => {
   const [status, setStatus] = useState(task.status);
   const [showProgress, setShowProgress] = useState(false); 
   const [progress, setProgress] = useState(Number(0));
+  const [titleUpdating, setTitleUpdating] = useState(false);
 
   // View States
   const [expanded, setExpanded] = useState(false);
@@ -55,6 +57,10 @@ const Task = ({ task, tasks, setTasks }) => {
     }))
   }
 
+  const handleTitleUpdate = (e) => {
+    e.stopPropagation();
+    setTitleUpdating(true);
+  }
   const handleExpand = () => {
     setExpanded(!expanded);
   }
@@ -93,7 +99,18 @@ const Task = ({ task, tasks, setTasks }) => {
       <div 
         className='task-header df df-a-c df-j-sb'
         onClick={handleExpand}>
-          <p className='task-title df df-a-c'><span></span> {showProgress? `${progress}%` : ''} {task.title}</p>
+          <p className={`task-title df df-a-c ${titleUpdating ? 'hidden' : '' }`}
+             onClick={handleTitleUpdate}>
+            <span></span> {showProgress? `${progress}%` : ''} {task.title}
+          </p>
+          <div className={`task-update-form ${titleUpdating ? '' : 'hidden'}`}>
+            <UpdateForm
+              type="task"
+              value={title}
+              setValue={setTitle}
+              setUpdating={setTitleUpdating}
+            />
+          </div>
           <div className='task-status df'>
             <button 
               className={`task-status-tag`}
