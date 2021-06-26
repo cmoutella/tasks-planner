@@ -6,7 +6,6 @@ import TasksList from './components/TasksList';
 
 function App() {
   // State Handlers
-  const [inputText, setInputText] = useState("");
   const [tasks, setTasks] = useState([]);
   const [filterState, setFilterState] = useState("all");
   const [filteredTasks, setFilteredTasks] = useState([]);
@@ -53,8 +52,6 @@ function App() {
       </header>
       <div className="body">
         <Form
-          inputText={inputText}
-          setInputText={setInputText}
           tasks={tasks}
           setTasks={setTasks}
           setFilterState={setFilterState} />

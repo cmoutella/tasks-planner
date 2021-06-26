@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 
-const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
+const Form = ({ tasks, setTasks, setFilterState }) => {
+  const [inputTask, setInputTask] = useState("");
+
   const handleInput = (e) => {
-    setInputText(e.target.value);
+    setInputTask(e.target.value);
   }
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setTasks([...tasks, Task(inputText)]);
-    setInputText("");
+    setTasks([...tasks, Task(inputTask)]);
+    setInputTask("");
   }
   const setFilter = (e) => {
     setFilterState(e.target.value);
@@ -28,14 +30,14 @@ const Form = ({ inputText, setInputText, tasks, setTasks, setFilterState }) => {
     <form className="app-form">
       <div className="new-input">
         <input 
-          value={inputText}
+          value={inputTask}
           className="task-input" 
           type="text"
           onChange={handleInput} />
         <button 
           className="btn btn-default task-submit"
           onClick={handleSubmit}
-          disabled={inputText === ""}>
+          disabled={inputTask === ""}>
           Add Task
         </button>
       </div>
